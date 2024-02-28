@@ -1,0 +1,70 @@
+* {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.container {
+  max-width: 80em;
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+}
+
+.input {
+  margin-bottom: 5px;
+}
+
+.card-item {
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 200px;
+}
+
+.submit-input-btn {
+  margin-top: 18px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: large;
+}
+
+.submit-input-btn:hover {
+  background-color: #007bdd;
+}
+
+.prediction-chart {
+  max-width: 80em;
+  margin-top: 20px;
+}
+
+.chart-heading {
+  display: block;
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
+
+.prediction-chart table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.prediction-chart th, .prediction-chart td {
+  padding: 8px;
+  border: 1px solid #ddd;
+}
+
+.prediction-chart th {
+  background-color: #f2f2f2;
+}
+
+.prediction-chart tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
