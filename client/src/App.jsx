@@ -39,6 +39,7 @@ function App() {
       setBowlCard("");
       setShotCard("");
       setShotTime("");
+      return data;
     });
   }
 
@@ -49,12 +50,18 @@ function App() {
           <span className="input">Bowl Card Name:</span>
           <select
             className="card-item"
+            value={bowlCard}
             onChange={(e) => {
               setBowlCard(e.target.value);
             }}
           >
+            <option>select</option>
             {bowlCardNames.map((card) => {
-              return <option key={card.id}>{card.bowl_card_name}</option>;
+              return (
+                <option key={card.id} value={card.bowl_card_name}>
+                  {card.bowl_card_name}
+                </option>
+              );
             })}
           </select>
         </div>
@@ -63,10 +70,16 @@ function App() {
           <span className="input">Shot Card Name:</span>
           <select
             className="card-item"
+            value={shotCard}
             onChange={(e) => setShotCard(e.target.value)}
           >
+            <option>select</option>
             {shotCardNames.map((card) => {
-              return <option key={card.id}>{card.shot_card_name}</option>;
+              return (
+                <option key={card.id} value={card.shot_card_name}>
+                  {card.shot_card_name}
+                </option>
+              );
             })}
           </select>
         </div>
@@ -75,16 +88,23 @@ function App() {
           <span className="input">Shot Timing:</span>
           <select
             className="card-item"
+            value={shotTime}
             onChange={(e) => setShotTime(e.target.value)}
           >
+            <option>select</option>
             {shotTimingNames.map((timing) => {
-              return <option key={timing.id}>{timing.shot_timing_name}</option>;
+              return (
+                <option key={timing.id} value={timing.shot_timing_name}>
+                  {timing.shot_timing_name}
+                </option>
+              );
             })}
           </select>
         </div>
 
         <span>
           <button
+            type="submit"
             className="submit-input-btn"
             onClick={() => {
               submitInput(bowlCard, shotCard, shotTime);

@@ -56,3 +56,13 @@ export async function createPredictionDB(input_string, output_string) {
   );
   return result.rows[0];
 }
+
+export async function getCommentryForOutcome(outcome) {
+  const commentary_array = (
+    await pool.query(
+      "SELECT * FROM commentary_for_outcome WHERE outcome = $1",
+      [outcome]
+    )
+  ).rows[0].commentary;
+  return commentary_array;
+}

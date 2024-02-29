@@ -38,6 +38,11 @@ CREATE TABLE prediction_chart (
     output VARCHAR(255)
 );
 
+CREATE TABLE commentary_for_outcome (
+    outcome VARCHAR(255),
+    commentary TEXT []
+);
+
 INSERT INTO bowl_cards_name (id,bowl_card_name) VALUES 
 (1,'Bouncer'),(2,'Inswinger'),(3,'Outswinger'),(4,'Leg cutter'),
 (5,'Off cutter'),(6,'Slower ball'),(7,'Yorker'),(8,'Pace'),
@@ -67,3 +72,12 @@ INSERT INTO outcome_for_timing (timing,outcome) VALUES
 ('Good', ARRAY ['4 runs', '6 runs']),
 ('Perfect', ARRAY ['4 runs', '6 runs']),
 ('Late', ARRAY ['1 wicket']);
+
+INSERT INTO commentary_for_outcome (outcome,commentary) VALUES 
+('0 run', ARRAY ['Edged and taken','Excellent line and length']),
+('1 run', ARRAY ['Excellent line and length']),
+('2 runs', ARRAY ['Convert ones into twos','Excellent effort on the boundary']),
+('3 runs', ARRAY ['Excellent running between the wickets','Excellent effort on the boundary']),
+('4 runs', ARRAY ['Just over the fielder']),
+('6 runs', ARRAY ['It is a huge hit', 'That is massive and out of the ground']),
+('1 wicket', ARRAY ['It is a wicket']);

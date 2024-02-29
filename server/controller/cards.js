@@ -1,6 +1,7 @@
 import {
   createPredictionDB,
   getBowlCardsDB,
+  getCommentryForOutcome,
   getOutcomeForTiming,
   getPredictionForInput,
   getPredictionsDB,
@@ -70,6 +71,16 @@ export async function createPrediction(req, res) {
       } else {
         output_string = Math.random() < 0.5 ? "1 run" : "1 wicket";
       }
+
+      const commentary_array = await getCommentryForOutcome(output_string);
+      let commentary = "";
+      if (commentary_array.length === 1) {
+        commentary = commentary_array[0];
+      } else {
+        commentary =
+          Math.random() < 0.5 ? commentary_array[0] : commentary_array[1];
+      }
+      output_string = `${commentary} - ${output_string}`;
 
       const newPrediction = await createPredictionDB(
         input_string,
