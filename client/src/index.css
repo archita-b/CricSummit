@@ -2,10 +2,27 @@
   font-family: Arial, Helvetica, sans-serif;
 }
 
+.app-container {
+  display: flex;
+  height: 90vh;
+  justify-content: center;
+  align-items: center;
+}
+
+.heading {
+  width: 80em;
+  text-align: center;
+  border: 2px solid #aaa;
+  margin-bottom: 1em;
+  color: #666;
+  background-color: #ddd;
+}
+
 .container {
   max-width: 80em;
   display: flex;
   justify-content: space-around;
+  align-items: center;
   margin-bottom: 20px;
 }
 
@@ -26,7 +43,6 @@
 }
 
 .submit-input-btn {
-  margin-top: 18px;
   padding: 10px 20px;
   background-color: #007bff;
   color: #fff;
@@ -42,7 +58,7 @@ button:hover {
 
 .prediction-chart {
   max-width: 80em;
-  margin-top: 20px;
+  margin-top: 2em;
 }
 
 .chart-heading {
@@ -58,7 +74,7 @@ button:hover {
 
 .prediction-chart th, .prediction-chart td {
   padding: 8px;
-  border: 1px solid #ddd;
+  border: 1px solid #999;
 }
 
 .prediction-chart th {

@@ -135,8 +135,8 @@ export default function SuperOver({
             Next
           </button>
 
-          <p>Score: {score}</p>
-          <p>Wickets Available: {wicketsAvailable}</p>
+          <h4>Score: {score}</h4>
+          <h4>Wickets Available: {wicketsAvailable}</h4>
         </div>
       </div>
     </>
