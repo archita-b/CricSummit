@@ -36,7 +36,7 @@
   font-size: large;
 }
 
-.submit-input-btn:hover {
+button:hover {
   background-color: #007bdd;
 }
 
@@ -68,3 +68,25 @@
 .prediction-chart tbody tr:nth-child(even) {
   background-color: #f2f2f2;
 }
+
+.super-over-bowl {
+  font-size: large;
+  font-weight: bold;
+}
+
+.next-button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: large;
+}
+
+.super-over-container {
+  display: flex;
+  justify-content: space-around;
+  width: 80em;
+}
+

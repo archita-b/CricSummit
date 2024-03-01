@@ -7,6 +7,7 @@ import {
   fetchShotCardNames,
   fetchShotTimingNames,
 } from "./requests";
+import SuperOver from "./components/SuperOver";
 
 function App() {
   const [bowlCardNames, setBowlCardNames] = useState([]);
@@ -47,7 +48,7 @@ function App() {
     <>
       <div className="container">
         <div className="card">
-          <span className="input">Bowl Card Name:</span>
+          <h3 className="input">Bowl Card Name:</h3>
           <select
             className="card-item"
             value={bowlCard}
@@ -67,7 +68,7 @@ function App() {
         </div>
 
         <div className="card">
-          <span className="input">Shot Card Name:</span>
+          <h3 className="input">Shot Card Name:</h3>
           <select
             className="card-item"
             value={shotCard}
@@ -85,7 +86,7 @@ function App() {
         </div>
 
         <div className="card">
-          <span className="input">Shot Timing:</span>
+          <h3 className="input">Shot Timing:</h3>
           <select
             className="card-item"
             value={shotTime}
@@ -116,7 +117,7 @@ function App() {
       </div>
 
       <div className="prediction-chart">
-        <span className="chart-heading">Prediction Chart:</span>
+        <h2 className="chart-heading">Prediction Chart:</h2>
         <table>
           <thead>
             <tr>
@@ -134,6 +135,14 @@ function App() {
           </tbody>
         </table>
       </div>
+
+      <SuperOver
+        shotCard={shotCard}
+        setShotCard={setShotCard}
+        shotTime={shotTime}
+        setShotTime={setShotTime}
+        predictions={predictions}
+      />
     </>
   );
 }
