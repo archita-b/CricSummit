@@ -104,11 +104,11 @@ export default function SuperOver({
             )
           ) : (
             <div>
-              <p>Australia scored: {score} runs</p>
+              <h4>Australia scored: {score} runs</h4>
               {score <= target ? (
-                <p>Australia lost by {target - score} runs</p>
+                <h4>Australia lost by {target - score} runs</h4>
               ) : (
-                <p>Australia won by {wicketsAvailable} wickets</p>
+                <h4>Australia won by {wicketsAvailable} wickets</h4>
               )}
             </div>
           )}
