@@ -1,12 +1,6 @@
 import { useEffect, useState } from "react";
 import "./index.css";
-import {
-  createPrediction,
-  fetchBowlCardNames,
-  fetchPredictions,
-  fetchShotCardNames,
-  fetchShotTimingNames,
-} from "./requests";
+import { createPrediction, fetchCardNames, fetchPredictions } from "./requests";
 import SuperOver from "./components/SuperOver";
 
 function App() {
@@ -19,9 +13,11 @@ function App() {
   const [predictions, setPredictions] = useState([]);
 
   useEffect(() => {
-    fetchBowlCardNames().then((data) => setBowlCardNames(data));
-    fetchShotCardNames().then((data) => setShotCardNames(data));
-    fetchShotTimingNames().then((data) => setShotTimingNames(data));
+    fetchCardNames().then((data) => {
+      setBowlCardNames(data.cardNames.bowlCardNames);
+      setShotCardNames(data.cardNames.shotCardNames);
+      setShotTimingNames(data.cardNames.shotTimings);
+    });
     fetchPredictions().then((data) => setPredictions(data));
   }, []);
 

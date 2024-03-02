@@ -1,30 +1,12 @@
 const url = "http://localhost:3000/api";
 
-export async function fetchBowlCardNames() {
-  const res = await fetch(`${url}/bowl`);
+export async function fetchCardNames() {
+  const res = await fetch(`${url}/cards`);
 
   if (!res.ok) return;
 
-  const data = await res.json();
-  return data;
-}
-
-export async function fetchShotCardNames() {
-  const res = await fetch(`${url}/shot`);
-
-  if (!res.ok) return;
-
-  const data = await res.json();
-  return data;
-}
-
-export async function fetchShotTimingNames() {
-  const res = await fetch(`${url}/timing`);
-
-  if (!res.ok) return;
-
-  const data = await res.json();
-  return data;
+  const cardNames = await res.json();
+  return { cardNames: cardNames, status: res.status };
 }
 
 export async function fetchPredictions() {

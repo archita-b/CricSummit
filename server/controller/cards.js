@@ -10,28 +10,17 @@ import {
   getShotsForBowlDB,
 } from "../model/cards.js";
 
-export async function getBowlCards(req, res) {
+export async function getCardNames(req, res) {
   try {
     const bowl_cards_name = await getBowlCardsDB();
-    res.status(200).json(bowl_cards_name);
-  } catch (error) {
-    return res.status(400).json({ error: error.message });
-  }
-}
-
-export async function getShotCards(req, res) {
-  try {
     const shot_cards_name = await getShotCardsDB();
-    res.status(200).json(shot_cards_name);
-  } catch (error) {
-    return res.status(400).json({ error: error.message });
-  }
-}
-
-export async function getShotTimings(req, res) {
-  try {
     const shot_timing = await getShotTimingsDB();
-    res.status(200).json(shot_timing);
+
+    res.status(200).json({
+      bowlCardNames: bowl_cards_name,
+      shotCardNames: shot_cards_name,
+      shotTimings: shot_timing,
+    });
   } catch (error) {
     return res.status(400).json({ error: error.message });
   }
