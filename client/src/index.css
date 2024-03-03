@@ -4,13 +4,12 @@
 
 .app-container {
   display: flex;
-  height: 90vh;
   justify-content: center;
   align-items: center;
 }
 
 .heading {
-  max-width: 80em;
+  width: 80em;
   text-align: center;
   border: 2px solid #aaa;
   margin-bottom: 1em;
@@ -19,20 +18,15 @@
 }
 
 .card-container {
-  max-width: 80em;
   display: flex;
   justify-content: space-around;
   align-items: center;
-  margin-bottom: 20px;
+  gap: 10px;
 }
 
 .card {
   display: flex;
   flex-direction: column;
-}
-
-.input {
-  margin-bottom: 5px;
 }
 
 .card-item {
@@ -57,14 +51,12 @@ button:hover {
 }
 
 .prediction-chart {
-  max-width: 80em;
   margin-top: 2em;
 }
 
 .chart-heading {
   display: block;
   font-size: 1.2em;
-  margin-bottom: 10px;
 }
 
 .prediction-chart table {
@@ -103,6 +95,5 @@ button:hover {
 .super-over-container {
   display: flex;
   justify-content: space-around;
-  width: 80em;
 }
 
