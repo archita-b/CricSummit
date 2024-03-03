@@ -18,7 +18,7 @@
   background-color: #ddd;
 }
 
-.container {
+.card-container {
   max-width: 80em;
   display: flex;
   justify-content: space-around;

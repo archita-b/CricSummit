@@ -2,6 +2,11 @@ import { useEffect, useState } from "react";
 import "./index.css";
 import { createPrediction, fetchCardNames, fetchPredictions } from "./requests";
 import SuperOver from "./components/SuperOver";
+import Predictions from "./components/Predictions";
+import BowlCard from "./components/BowlCard";
+import ShotCard from "./components/ShotCard";
+import ShotTime from "./components/ShotTime";
+import SubmitBtn from "./components/SubmitBtn";
 
 function App() {
   const [bowlCardNames, setBowlCardNames] = useState([]);
@@ -47,95 +52,29 @@ function App() {
           <h1>CricSummit</h1>
         </div>
 
-        <div className="container">
-          <div className="card">
-            <h3 className="input">Bowl Card Name</h3>
-            <select
-              className="card-item"
-              value={bowlCard}
-              onChange={(e) => {
-                setBowlCard(e.target.value);
-              }}
-            >
-              <option>select</option>
-              {bowlCardNames.map((card) => {
-                return (
-                  <option key={card.id} value={card.bowl_card_name}>
-                    {card.bowl_card_name}
-                  </option>
-                );
-              })}
-            </select>
-          </div>
+        <div className="card-container">
+          <BowlCard
+            bowlCard={bowlCard}
+            setBowlCard={setBowlCard}
+            bowlCardNames={bowlCardNames}
+          />
 
-          <div className="card">
-            <h3 className="input">Shot Card Name</h3>
-            <select
-              className="card-item"
-              value={shotCard}
-              onChange={(e) => setShotCard(e.target.value)}
-            >
-              <option>select</option>
-              {shotCardNames.map((card) => {
-                return (
-                  <option key={card.id} value={card.shot_card_name}>
-                    {card.shot_card_name}
-                  </option>
-                );
-              })}
-            </select>
-          </div>
+          <ShotCard
+            shotCard={shotCard}
+            setShotCard={setShotCard}
+            shotCardNames={shotCardNames}
+          />
 
-          <div className="card">
-            <h3 className="input">Shot Timing</h3>
-            <select
-              className="card-item"
-              value={shotTime}
-              onChange={(e) => setShotTime(e.target.value)}
-            >
-              <option>select</option>
-              {shotTimingNames.map((timing) => {
-                return (
-                  <option key={timing.id} value={timing.shot_timing_name}>
-                    {timing.shot_timing_name}
-                  </option>
-                );
-              })}
-            </select>
-          </div>
+          <ShotTime
+            shotTime={shotTime}
+            setShotTime={setShotTime}
+            shotTimingNames={shotTimingNames}
+          />
 
-          <span>
-            <button
-              type="submit"
-              className="submit-input-btn"
-              onClick={() => {
-                submitInput(bowlCard, shotCard, shotTime);
-              }}
-            >
-              submit input
-            </button>
-          </span>
+          <SubmitBtn submitInput={submitInput} />
         </div>
 
-        <div className="prediction-chart">
-          <h2 className="chart-heading">Prediction Chart</h2>
-          <table>
-            <thead>
-              <tr>
-                <th>Input</th>
-                <th>Output</th>
-              </tr>
-            </thead>
-            <tbody>
-              {predictions.map((prediction, index) => (
-                <tr key={index}>
-                  <td>{prediction.input}</td>
-                  <td>{prediction.output}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+        <Predictions predictions={predictions} />
 
         <SuperOver
           shotCard={shotCard}
