@@ -20,7 +20,7 @@
 - Commands for installing postgres locally can be found here
   <https://www.codecademy.com/article/installing-and-using-postgresql-locally>
 
-- Create a .env file containing the database secrects. This is how it should look like:
+- Create a .env file containing the database secrets. This is how it should look like:
 
 ```
 DB_HOST=localhost
