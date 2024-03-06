@@ -12,14 +12,14 @@ import {
 
 export async function getCardNames(req, res) {
   try {
-    const bowl_cards_name = await getBowlCardsDB();
-    const shot_cards_name = await getShotCardsDB();
-    const shot_timing = await getShotTimingsDB();
+    const bowlCardNames = await getBowlCardsDB();
+    const shotCardNames = await getShotCardsDB();
+    const shotTiming = await getShotTimingsDB();
 
     res.status(200).json({
-      bowlCardNames: bowl_cards_name,
-      shotCardNames: shot_cards_name,
-      shotTimings: shot_timing,
+      bowlCardNames: bowlCardNames,
+      shotCardNames: shotCardNames,
+      shotTimings: shotTiming,
     });
   } catch (error) {
     return res.status(400).json({ error: error.message });
@@ -37,44 +37,40 @@ export async function getPredictions(req, res) {
 
 export async function createPrediction(req, res) {
   try {
-    const { bowl_card_name, shot_card_name, shot_timing } = req.body;
+    const { bowlCardName, shotCardName, shotTiming } = req.body;
 
-    if (!bowl_card_name || !shot_card_name || !shot_timing) {
+    if (!bowlCardName || !shotCardName || !shotTiming) {
       return res.json({ error: "Please provide all the three inputs" });
     }
 
-    const input_string = `${bowl_card_name} ${shot_card_name} ${shot_timing}`;
-    const prediction = await getPredictionForInput(input_string);
+    const inputString = `${bowlCardName} ${shotCardName} ${shotTiming}`;
+    const prediction = await getPredictionForInput(inputString);
 
     if (prediction !== undefined) {
       res.status(200).json(prediction);
     } else {
-      const shot_card_array = await getShotsForBowlDB(bowl_card_name);
-      const outcome_array = await getOutcomeForTiming(shot_timing);
+      const shotCardArray = await getShotsForBowlDB(bowlCardName);
+      const outcomeArray = await getOutcomeForTiming(shotTiming);
 
-      let output_string = "";
+      let outputString = "";
 
-      if (shot_card_array.includes(shot_card_name)) {
-        output_string =
-          Math.random() < 0.5 ? outcome_array[0] : outcome_array[1];
+      if (shotCardArray.includes(shotCardName)) {
+        outputString = Math.random() < 0.5 ? outcomeArray[0] : outcomeArray[1];
       } else {
-        output_string = Math.random() < 0.5 ? "1 run" : "1 wicket";
+        outputString = Math.random() < 0.5 ? "1 run" : "1 wicket";
       }
 
-      const commentary_array = await getCommentryForOutcome(output_string);
+      const commentaryArray = await getCommentryForOutcome(outputString);
       let commentary = "";
-      if (commentary_array.length === 1) {
-        commentary = commentary_array[0];
+      if (commentaryArray.length === 1) {
+        commentary = commentaryArray[0];
       } else {
         commentary =
-          Math.random() < 0.5 ? commentary_array[0] : commentary_array[1];
+          Math.random() < 0.5 ? commentaryArray[0] : commentaryArray[1];
       }
-      output_string = `${commentary} - ${output_string}`;
+      outputString = `${commentary} - ${outputString}`;
 
-      const newPrediction = await createPredictionDB(
-        input_string,
-        output_string
-      );
+      const newPrediction = await createPredictionDB(inputString, outputString);
       res.status(201).json(newPrediction);
     }
   } catch (error) {

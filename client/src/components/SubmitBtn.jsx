@@ -1,4 +1,9 @@
-export default function SubmitBtn() {
+export default function SubmitBtn({
+  submitInput,
+  bowlCard,
+  shotCard,
+  shotTime,
+}) {
   return (
     <div>
       <span>

@@ -14,19 +14,15 @@ export async function fetchPredictions() {
 
   if (!res.ok) return;
 
-  const data = await res.json();
-  return data;
+  const predictions = await res.json();
+  return { predictions: predictions, status: res.status };
 }
 
-export async function createPrediction(
-  bowl_card_name,
-  shot_card_name,
-  shot_timing
-) {
+export async function createPrediction(bowlCardName, shotCardName, shotTiming) {
   const res = await fetch(`${url}/prediction`, {
     method: "POST",
     headers: { "Content-type": "Application/json" },
-    body: JSON.stringify({ bowl_card_name, shot_card_name, shot_timing }),
+    body: JSON.stringify({ bowlCardName, shotCardName, shotTiming }),
   });
 
   if (!res.ok) return;

@@ -35,20 +35,24 @@ export default function SuperOver({
 
   const inputForCurrentBowlCard = inputForBowlCard(currentBowlCard);
 
-  const predictionForCurrentBowlCard = predictions.filter(
+  const predictionForCurrentBowlCard = predictions.find(
     (prediction) => prediction.input === inputForCurrentBowlCard
   );
 
-  const currentInput = predictionForCurrentBowlCard[0]?.input;
-  const currentOutput = predictionForCurrentBowlCard[0]?.output;
+  const currentInput = predictionForCurrentBowlCard?.input;
+  const currentOutput = predictionForCurrentBowlCard?.output;
 
   function shotOutcome(output) {
     if (!output) return null;
 
-    const runOrWicket = output.split("-")[1].trim();
+    const commentaryPlusOutcome = output.split("-");
 
-    if (runOrWicket.endsWith("run") || runOrWicket.endsWith("runs")) {
-      const runs = runOrWicket.split(" ")[0];
+    const outcome = commentaryPlusOutcome[1].trim();
+
+    if (outcome.endsWith("run") || outcome.endsWith("runs")) {
+      const regex = /\d+/;
+      const matches = outcome.match(regex);
+      const runs = parseInt(matches[0]);
       return runs;
     }
     return "wicket";

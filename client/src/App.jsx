@@ -23,7 +23,7 @@ function App() {
       setShotCardNames(data.cardNames.shotCardNames);
       setShotTimingNames(data.cardNames.shotTimings);
     });
-    fetchPredictions().then((data) => setPredictions(data));
+    fetchPredictions().then((data) => setPredictions(data.predictions));
   }, []);
 
   function submitInput(bowlCard, shotCard, shotTime) {
@@ -32,16 +32,22 @@ function App() {
       output: "",
     };
     createPrediction(bowlCard, shotCard, shotTime).then((data) => {
-      if (data.error === "Please provide all the three inputs")
+      if (data.error === "Please provide all the three inputs") {
         alert("Provide all the inputs");
+      } else {
+        const inputString = `${bowlCard} ${shotCard} ${shotTime}`;
+        const predictionForInputString = predictions.find(
+          (prediction) => prediction.input === inputString
+        );
+        if (!predictionForInputString)
+          setPredictions((prevPredictions) => {
+            return [...prevPredictions, { ...newPrediction, ...data }];
+          });
+      }
 
-      setPredictions((prevPredictions) => {
-        return [...prevPredictions, { ...newPrediction, ...data }];
-      });
       setBowlCard("");
       setShotCard("");
       setShotTime("");
-      return data;
     });
   }
 
@@ -71,7 +77,12 @@ function App() {
             shotTimingNames={shotTimingNames}
           />
 
-          <SubmitBtn submitInput={submitInput} />
+          <SubmitBtn
+            submitInput={submitInput}
+            bowlCard={bowlCard}
+            shotCard={shotCard}
+            shotTime={shotTime}
+          />
         </div>
 
         <Predictions predictions={predictions} />
