@@ -40,7 +40,9 @@ export async function createPrediction(req, res) {
     const { bowlCardName, shotCardName, shotTiming } = req.body;
 
     if (!bowlCardName || !shotCardName || !shotTiming) {
-      return res.json({ error: "Please provide all the three inputs" });
+      return res
+        .status(400)
+        .json({ error: "Please provide all the three inputs" });
     }
 
     const inputString = `${bowlCardName} ${shotCardName} ${shotTiming}`;

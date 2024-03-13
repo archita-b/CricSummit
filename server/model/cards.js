@@ -15,11 +15,11 @@ export async function getShotTimingsDB() {
   return result.rows;
 }
 
-export async function getShotsForBowlDB(bowl_card_name) {
+export async function getShotsForBowlDB(bowlCardName) {
   const shot_card_array = (
     await pool.query(
       "SELECT shot_card FROM shot_for_bowl WHERE bowl_card = $1",
-      [bowl_card_name]
+      [bowlCardName]
     )
   ).rows[0].shot_card;
   return shot_card_array;
@@ -40,29 +40,35 @@ export async function getPredictionsDB() {
   return result.rows;
 }
 
-export async function getPredictionForInput(input_string) {
+export async function getPredictionForInput(inputString) {
   const result = (
     await pool.query("SELECT * FROM prediction_chart WHERE input = $1", [
-      input_string,
+      inputString,
     ])
   ).rows[0];
   return result;
 }
 
-export async function createPredictionDB(input_string, output_string) {
+export async function createPredictionDB(inputString, outputString) {
   const result = await pool.query(
     "INSERT INTO prediction_chart (input,output) VALUES ($1,$2) RETURNING *",
-    [input_string, output_string]
+    [inputString, outputString]
   );
   return result.rows[0];
 }
 
+export async function deletePredictionDB(inputString) {
+  await pool.query("DELETE FROM prediction_chart WHERE input = $1", [
+    inputString,
+  ]);
+}
+
 export async function getCommentryForOutcome(outcome) {
-  const commentary_array = (
+  const commentaryArray = (
     await pool.query(
       "SELECT * FROM commentary_for_outcome WHERE outcome = $1",
       [outcome]
     )
   ).rows[0].commentary;
-  return commentary_array;
+  return commentaryArray;
 }

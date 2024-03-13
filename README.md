@@ -41,7 +41,7 @@ npm run dev
 and switch to server directory and run
 
 ```
-nodemon app.js
+npm run dev
 ```
 
 - Access the application in your browser at http://localhost:5173.

@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors";
 import cardsRouter from "./routes/cards.js";
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 const app = express();
 
 app.use(cors("http://localhost:5173"));
@@ -17,3 +17,5 @@ app.listen(PORT, (error) => {
     console.log("Error connecting to server", error);
   }
 });
+
+export default app;
