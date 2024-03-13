@@ -7,6 +7,7 @@ export default function ShotCard({ shotCard, setShotCard, shotCardNames }) {
           className="card-item"
           value={shotCard}
           onChange={(e) => setShotCard(e.target.value)}
+          data-testid="shot-card-select"
         >
           <option>select</option>
           {shotCardNames.map((card) => {

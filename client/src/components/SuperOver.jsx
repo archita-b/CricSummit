@@ -1,3 +1,4 @@
+import React from "react";
 import { useState } from "react";
 
 export default function SuperOver({
@@ -60,6 +61,21 @@ export default function SuperOver({
 
   const currentShotOutcome = shotOutcome(currentOutput);
 
+  function handleNextBtnClick() {
+    setCurrentIndex(currentIndex + 1);
+    if (currentShotOutcome !== "wicket") {
+      setScore((score) => {
+        return currentShotOutcome
+          ? Number(score) + Number(currentShotOutcome)
+          : Number(score);
+      });
+    } else {
+      setWicketsAvailable(wicketsAvailable - 1);
+    }
+    setShotCard("");
+    setShotTime("");
+  }
+
   return (
     <>
       <h2>Super Over</h2>
@@ -85,7 +101,7 @@ export default function SuperOver({
           </h4>
 
           <h4>
-            Wickets Available: <span>{wicketsAvailable}</span>
+            Wickets Available Initially: <span>{wicketsAvailable}</span>
           </h4>
         </div>
 
@@ -121,20 +137,8 @@ export default function SuperOver({
         <div className="output-message">
           <button
             className="next-button"
-            onClick={() => {
-              setCurrentIndex(currentIndex + 1);
-              if (currentShotOutcome !== "wicket") {
-                setScore((score) => {
-                  return currentShotOutcome
-                    ? Number(score) + Number(currentShotOutcome)
-                    : Number(score);
-                });
-              } else {
-                setWicketsAvailable(wicketsAvailable - 1);
-              }
-              setShotCard("");
-              setShotTime("");
-            }}
+            disabled={!shotCard || !shotTime}
+            onClick={handleNextBtnClick}
           >
             Next
           </button>

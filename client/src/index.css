@@ -92,6 +92,10 @@ button:hover {
   font-size: large;
 }
 
+.next-button:disabled {
+  background-color: grey;
+}
+
 .super-over-container {
   display: flex;
   justify-content: space-around;

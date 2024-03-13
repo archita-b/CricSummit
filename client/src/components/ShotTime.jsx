@@ -7,6 +7,7 @@ export default function ShotTime({ shotTime, setShotTime, shotTimingNames }) {
           className="card-item"
           value={shotTime}
           onChange={(e) => setShotTime(e.target.value)}
+          data-testid="shot-time-select"
         >
           <option>select</option>
           {shotTimingNames.map((timing) => {
