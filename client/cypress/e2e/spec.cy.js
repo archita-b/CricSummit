@@ -3,25 +3,11 @@ const responseData = {
     { id: 1, bowl_card_name: "Bouncer" },
     { id: 2, bowl_card_name: "Inswinger" },
     { id: 3, bowl_card_name: "Outswinger" },
-    { id: 4, bowl_card_name: "Leg cutter" },
-    { id: 5, bowl_card_name: "Off cutter" },
-    { id: 6, bowl_card_name: "Slower ball" },
-    { id: 7, bowl_card_name: "Yorker" },
-    { id: 8, bowl_card_name: "Pace" },
-    { id: 9, bowl_card_name: "Off break" },
-    { id: 10, bowl_card_name: "Doosra" },
   ],
   shotCardNames: [
     { id: 1, shot_card_name: "Straight" },
     { id: 2, shot_card_name: "Sweep" },
     { id: 3, shot_card_name: "Flick" },
-    { id: 4, shot_card_name: "CoverDrive" },
-    { id: 5, shot_card_name: "LegLance" },
-    { id: 6, shot_card_name: "Pull" },
-    { id: 7, shot_card_name: "Long on" },
-    { id: 8, shot_card_name: "Scoop" },
-    { id: 9, shot_card_name: "Square cut" },
-    { id: 10, shot_card_name: "UpperCut" },
   ],
   shotTimings: [
     { id: 1, shot_timing_name: "Early" },
@@ -39,6 +25,8 @@ const predictionData = [
 ];
 
 describe("Home Page", () => {
+  let initialRowCount, finalRowCount;
+
   beforeEach(() => {
     cy.intercept("GET", "/api/cards", responseData).as("getCards");
     cy.intercept("GET", "/api/prediction", predictionData).as("getPrediction");
@@ -47,18 +35,22 @@ describe("Home Page", () => {
 
       const predictionInputString = `${bowlCardName} ${shotCardName} ${shotTiming}`;
 
-      // Check if the input already exists in the prediction array
       const existingPrediction = predictionData.find(
         (prediction) => prediction.input === predictionInputString
       );
 
       if (!existingPrediction) {
-        // Create a dummy output prediction and add it to the prediction array
-        const dummyOutput = "Dummy output prediction";
-        const predict = { input: predictionInputString, output: dummyOutput };
-        predictionData.push(predict);
+        const dummyOutput = "Dummy output prediction string";
+        const prediction = {
+          input: predictionInputString,
+          output: dummyOutput,
+        };
+
+        predictionData.push(prediction);
+
         const responseStatus = 201;
-        const responseBody = predict;
+        const responseBody = prediction;
+
         req.reply({
           status: responseStatus,
           body: responseBody,
@@ -66,18 +58,18 @@ describe("Home Page", () => {
       } else {
         const responseStatus = 200;
         const responseBody = existingPrediction;
+
         req.reply({
           status: responseStatus,
           body: responseBody,
         });
       }
-
-      // Respond with the updated prediction array and appropriate status code
     }).as("postPrediction");
   });
-  // });
-  it("should select options and submit the form", () => {
+
+  it("should select options and submit", () => {
     cy.visit("/");
+    cy.get('table[data-testid="prediction-chart"]').should("be.visible");
 
     cy.get('select[data-testid="bowl-card-select"]').select("Bouncer");
 
@@ -85,6 +77,21 @@ describe("Home Page", () => {
 
     cy.get('select[data-testid="shot-time-select"]').select("Early");
 
+    cy.get('table[data-testid="prediction-chart"]')
+      .find("tr")
+      .then(($rows) => {
+        initialRowCount = $rows.length;
+      })
+      .as("initalTableLoad");
+
     cy.get(".submit-input-btn").click();
+
+    cy.get('table[data-testid="prediction-chart"]')
+      .find("tr")
+      .then(($rows) => {
+        finalRowCount = $rows.length;
+        expect(finalRowCount).to.be.greaterThan(initialRowCount);
+      })
+      .as("newRowAdded");
   });
 });

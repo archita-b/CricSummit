@@ -5,7 +5,7 @@ export default function Predictions({ predictions }) {
     <div>
       <div className="prediction-chart">
         <h2 className="chart-heading">Prediction Chart</h2>
-        <table>
+        <table data-testid="prediction-chart">
           <thead>
             <tr>
               <th>Input</th>
