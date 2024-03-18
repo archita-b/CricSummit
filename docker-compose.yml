@@ -16,7 +16,7 @@ services:
     ports:
       - "3000:3000"
     environment:
-      DB_USER: architha
+      DB_USER: archita
       DB_HOST: postgres
       DB_DATABASE: cricsummit
       DB_PASSWORD: 1234
