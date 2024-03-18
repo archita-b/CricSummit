@@ -57,6 +57,7 @@ INSERT INTO shot_timing (id,shot_timing_name) VALUES
 (1,'Early'),(2,'Good'),(3,'Perfect'),(4,'Late');
 
 INSERT INTO shot_for_bowl (bowl_card,shot_card) VALUES 
+('Bouncer', ARRAY ['Pull', 'SquareCut']),
 ('Inswinger', ARRAY ['CoverDrive', 'LegLance']),
 ('Outswinger', ARRAY ['Straight','Sweep']),
 ('Leg cutter', ARRAY ['Flick','SquareCut']),
