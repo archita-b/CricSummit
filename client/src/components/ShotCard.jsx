@@ -1,3 +1,5 @@
+import React from "react";
+
 export default function ShotCard({ shotCard, setShotCard, shotCardNames }) {
   return (
     <div>
@@ -5,9 +7,9 @@ export default function ShotCard({ shotCard, setShotCard, shotCardNames }) {
         <h3 className="input">Shot Card Name</h3>
         <select
           className="card-item"
+          data-testid="shot-card-select"
           value={shotCard}
           onChange={(e) => setShotCard(e.target.value)}
-          data-testid="shot-card-select"
         >
           <option>select</option>
           {shotCardNames.map((card) => {

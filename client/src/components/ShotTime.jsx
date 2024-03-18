@@ -1,3 +1,5 @@
+import React from "react";
+
 export default function ShotTime({ shotTime, setShotTime, shotTimingNames }) {
   return (
     <div>
@@ -5,9 +7,9 @@ export default function ShotTime({ shotTime, setShotTime, shotTimingNames }) {
         <h3 className="input">Shot Timing</h3>
         <select
           className="card-item"
+          data-testid="shot-time-select"
           value={shotTime}
           onChange={(e) => setShotTime(e.target.value)}
-          data-testid="shot-time-select"
         >
           <option>select</option>
           {shotTimingNames.map((timing) => {

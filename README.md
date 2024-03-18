@@ -9,39 +9,10 @@
 ## How to run
 
 - Clone the repository in your computer and switch to that directory.
-- Install the dependencies using
-
-  ```
-  npm i
-  ```
-
-  switching to client and server directory.
-
-- Commands for installing postgres locally can be found here
-  <https://www.codecademy.com/article/installing-and-using-postgresql-locally>
-
-- Create a .env file containing the database secrets. This is how it should look like:
+- Run
 
 ```
-DB_HOST=localhost
-DB_PORT=my_port
-DB_DATABASE=my_database
-DB_USERNAME=my_username
-DB_PASSWORD=my_password
+docker compose up
 ```
 
-- Run the schema specified in ./server/model/schema/schema.sql
-
-- Switch to client directory and run
-
-```
-npm run dev
-```
-
-and switch to server directory and run
-
-```
-npm run dev
-```
-
-- Access the application in your browser at http://localhost:5173.
+- Go to http://localhost:8080

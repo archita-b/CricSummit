@@ -1,0 +1,42 @@
+services:
+  postgres:
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_DB: cricsummit
+      POSTGRES_USER: archita
+      POSTGRES_PASSWORD: 1234
+    volumes:
+      - ./server/model/schema/schema.sql:/docker-entrypoint-initdb.d/schema.sql
+
+  express:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      DB_USER: architha
+      DB_HOST: postgres
+      DB_DATABASE: cricsummit
+      DB_PASSWORD: 1234
+      DB_PORT: 5432
+    depends_on:
+      - postgres
+
+  react:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    ports:
+      - "8080:80"
+
+
+
+
+
+
+
+
+
+

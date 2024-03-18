@@ -25,6 +25,7 @@ describe("GET /api/prediction", () => {
     expect(response.headers["content-type"]).toMatch(/json/);
     expect(response.statusCode).toBe(200);
   });
+
   it("should return an array of predictions", async () => {
     const response = await request(app).get("/api/prediction");
 
