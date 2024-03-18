@@ -9,10 +9,41 @@
 ## How to run
 
 - Clone the repository in your computer and switch to that directory.
-- Run
+- Run the following command
 
 ```
 docker compose up
 ```
 
-- Go to http://localhost:8080
+- Go to port `8080` in your `localhost`.
+
+## To run the tests
+
+##### Unit and component test:
+
+- go to client directory
+- Run the following command
+
+```
+npm run test
+```
+
+##### End-to-end test :
+
+- go to client directory
+- Run the following command
+
+```
+npm run test:e2e
+```
+
+##### Api test:
+
+- go to server directory
+- Run the following command
+
+```
+npm run test
+```
+
+Note: To run the test cases you need to explicitly install the node modules using `npm install`.

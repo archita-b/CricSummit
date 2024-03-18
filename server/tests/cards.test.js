@@ -78,7 +78,6 @@ describe("POST /api/prediction", async () => {
   });
 
   await deletePredictionDB(
-    `${predictionData.bowlCardName} ${predictionData.shotCardName} 
-         ${predictionData.shotTiming}`
+    `${predictionData.bowlCardName} ${predictionData.shotCardName} ${predictionData.shotTiming}`
   );
 });
