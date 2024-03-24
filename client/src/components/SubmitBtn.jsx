@@ -5,18 +5,16 @@ export default function SubmitBtn({
   shotTime,
 }) {
   return (
-    <div>
-      <span>
-        <button
-          type="submit"
-          className="submit-input-btn"
-          onClick={() => {
-            submitInput(bowlCard, shotCard, shotTime);
-          }}
-        >
-          submit input
-        </button>
-      </span>
-    </div>
+    <span>
+      <button
+        type="submit"
+        className="submit-input-btn"
+        onClick={() => {
+          submitInput(bowlCard, shotCard, shotTime);
+        }}
+      >
+        submit input
+      </button>
+    </span>
   );
 }

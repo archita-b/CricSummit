@@ -15,24 +15,24 @@ export async function getShotTimingsDB() {
   return result.rows;
 }
 
-export async function getShotsForBowlDB(bowlCardName) {
-  const shot_card_array = (
+export async function getShotsForBowl(bowlCardName) {
+  const shotCardArray = (
     await pool.query(
       "SELECT shot_card FROM shot_for_bowl WHERE bowl_card = $1",
       [bowlCardName]
     )
   ).rows[0].shot_card;
-  return shot_card_array;
+  return shotCardArray;
 }
 
 export async function getOutcomeForTiming(timing) {
-  const outcome_array = (
+  const outcomeArray = (
     await pool.query(
       "SELECT outcome FROM outcome_for_timing WHERE timing = $1",
       [timing]
     )
   ).rows[0].outcome;
-  return outcome_array;
+  return outcomeArray;
 }
 
 export async function getPredictionsDB() {

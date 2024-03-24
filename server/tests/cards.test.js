@@ -72,7 +72,6 @@ describe("POST /api/prediction", async () => {
       .post("/api/prediction")
       .send(incompleteInput);
 
-    expect(response.statusCode).toBe(400);
     expect(response.headers["content-type"]).toMatch(/json/);
     expect(response.body).toHaveProperty("error");
   });

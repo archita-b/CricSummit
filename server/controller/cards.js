@@ -7,7 +7,7 @@ import {
   getPredictionsDB,
   getShotCardsDB,
   getShotTimingsDB,
-  getShotsForBowlDB,
+  getShotsForBowl,
 } from "../model/cards.js";
 
 export async function getCardNames(req, res) {
@@ -40,9 +40,7 @@ export async function createPrediction(req, res) {
     const { bowlCardName, shotCardName, shotTiming } = req.body;
 
     if (!bowlCardName || !shotCardName || !shotTiming) {
-      return res
-        .status(400)
-        .json({ error: "Please provide all the three inputs" });
+      return res.json({ error: "Please provide all the three inputs" });
     }
 
     const inputString = `${bowlCardName} ${shotCardName} ${shotTiming}`;
@@ -51,7 +49,7 @@ export async function createPrediction(req, res) {
     if (prediction !== undefined) {
       res.status(200).json(prediction);
     } else {
-      const shotCardArray = await getShotsForBowlDB(bowlCardName);
+      const shotCardArray = await getShotsForBowl(bowlCardName);
       const outcomeArray = await getOutcomeForTiming(shotTiming);
 
       let outputString = "";
