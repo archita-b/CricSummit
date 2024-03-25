@@ -15,6 +15,9 @@ describe("GET /api/cards", () => {
     const response = await request(app).get("/api/cards");
 
     expect(response.body).toBeInstanceOf(Object);
+    expect(response.body).toHaveProperty("bowlCardNames");
+    expect(response.body).toHaveProperty("shotCardNames");
+    expect(response.body).toHaveProperty("shotTimings");
   });
 });
 
