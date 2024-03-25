@@ -21,6 +21,7 @@ export default function SuperOver({
   const [wicketsAvailable, setWicketsAvailable] = useState(2);
 
   const target = 20;
+  const initialWicketsAvailable = 2;
   const bowler = "Sudhakar";
   const batters = ["Craig", "Chris", "Martin"];
 
@@ -101,7 +102,7 @@ export default function SuperOver({
           </h4>
 
           <h4>
-            Wickets Available Initially: <span>{wicketsAvailable}</span>
+            Wickets Available Initially: <span>{initialWicketsAvailable}</span>
           </h4>
         </div>
 
