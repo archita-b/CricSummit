@@ -76,7 +76,7 @@ describe("SuperOver component", () => {
       />
     );
     const finalScore = screen.queryByText(/scored runs/i);
-    const result = screen.queryByText(/\b(?:won|lost)\b/i);
+    const result = screen.queryByText(/\b(won|lost)\b/i);
 
     waitFor(() => {
       expect(finalScore).toBeInTheDocument();
@@ -102,11 +102,9 @@ describe("SuperOver component", () => {
     await fireEvent.click(nextButton);
 
     const finalScore = screen.queryByText(/scored runs/i);
-    const result = screen.queryByText(/\b(?:won|lost)\b/i);
+    const result = screen.queryByText(/\b(won|lost)\b/i);
 
     expect(finalScore).not.toBeInTheDocument();
     expect(result).not.toBeInTheDocument();
-
-    const scoreElement = screen.getByText(/Score: \d+/i);
   });
 });

@@ -36,20 +36,20 @@ describe("ShotCard", () => {
   it("should render a select menu", async () => {
     render(
       <ShotCard
-        setShotlCard={setShotCardMock}
+        setShotCard={setShotCardMock}
         shotCard={""}
         shotCardNames={shotCardNames}
       />
     );
 
-    const selectElement = screen.getAllByTestId("shot-card-select");
+    const selectElement = screen.getByTestId("shot-card-select");
     waitFor(async () => {
       expect(selectElement).toBeInTheDocument();
 
       const option = "Option 2";
       await fireEvent.change(selectElement, { target: { value: option } });
 
-      expect(setShotCardMock).toHaveBeenCalledWith(option);
+      expect(setShotCard).toHaveBeenCalledWith(option);
     });
   });
 });

@@ -42,14 +42,14 @@ describe("BowlCard", () => {
       />
     );
 
-    const selectElement = screen.getAllByTestId("bowl-card-select");
+    const selectElement = screen.getByTestId("bowl-card-select");
     waitFor(async () => {
       expect(selectElement).toBeInTheDocument();
 
       const option = "Option 2";
       await fireEvent.change(selectElement, { target: { value: option } });
 
-      expect(setBowlCardMock).toHaveBeenCalledWith(option);
+      expect(setBowlCard).toHaveBeenCalledWith(option);
     });
   });
 });

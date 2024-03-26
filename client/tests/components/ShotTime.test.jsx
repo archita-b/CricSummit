@@ -42,14 +42,14 @@ describe("ShotTime", () => {
       />
     );
 
-    const selectElement = screen.getAllByTestId("shot-time-select");
+    const selectElement = screen.getByTestId("shot-time-select");
     waitFor(async () => {
       expect(selectElement).toBeInTheDocument();
 
       const option = "Option 2";
       await fireEvent.change(selectElement, { target: { value: option } });
 
-      expect(setShotTimeMock).toHaveBeenCalledWith(option);
+      expect(setShotTime).toHaveBeenCalledWith(option);
     });
   });
 });
